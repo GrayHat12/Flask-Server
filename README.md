@@ -92,9 +92,9 @@
 
  ## SUPPORT ##
   Your support keeps me going. Feel free to [Donate](https://www.instamojo.com/@grayhat/ "Instamojo") and show your support by following me on
-  [Website](https://grayhat12.github.io/old/index.html "GrayHat")
-  [Twitter](https://twitter.com/gray_rahul "@gray_rahul")
-  [Instagram](https://www.instagram.com/gray_._hat/ "@gray_._hat")
-  [LinkedIn](https://www.linkedin.com/in/grayhat "@grayhat")
-  [Github](https://github.com/GrayHat12 "@grayhat12")
-  [Facebook](https://www.facebook.com/grayhathacks/ "@grayhathacks")
+  * [Website](https://grayhat12.github.io/old/index.html "GrayHat")
+  * [Twitter](https://twitter.com/gray_rahul "@gray_rahul")
+  * [Instagram](https://www.instagram.com/gray_._hat/ "@gray_._hat")
+  * [LinkedIn](https://www.linkedin.com/in/grayhat "@grayhat")
+  * [Github](https://github.com/GrayHat12 "@grayhat12")
+  * [Facebook](https://www.facebook.com/grayhathacks/ "@grayhathacks")
