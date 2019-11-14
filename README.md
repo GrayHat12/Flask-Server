@@ -3,7 +3,7 @@
  ## INTRODUCTION ##
   __So what does the code do ?__
   This is a flask server with two post endpoints :
-  * POST : /news
+  * __POST : /news__
     * This endpoint requires a json file with format similar to :
         ```javascript
         {
@@ -32,7 +32,7 @@
             "source": "https://news.google.com/search?q=Google%20Developers"
         }
         ```
-  * POST : /youtube
+  * __POST : /youtube__
     * This endpoint requires a json file with format similar to :
         ```javascript
         {
