@@ -89,6 +89,7 @@
   Article.py , GrayAPI.py and youtube.py were written by me.
   These are scraping scripts and might be illegal for commercial use.
   This script is only supposed to be used for educational purposes.
+  Mail me at (grayhathacks10@gmail.com)
 
  ## SUPPORT ##
   Your support keeps me going. Feel free to [Donate](https://www.instamojo.com/@grayhat/ "Instamojo") and show your support by following me on
