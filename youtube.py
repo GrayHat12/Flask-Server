@@ -89,7 +89,7 @@ class Decoder:
         except:
             audio.update({"bitrate" : "null"})
         try:
-            audio.update({"size" : str(dat.getbestaudio().get_filesize)})
+            audio.update({"size" : str(int(dat.getbestaudio().get_filesize()/1024))+" bytes"})
         except:
             audio.update({"size" : "null"})
         try:
@@ -106,7 +106,7 @@ class Decoder:
         except:
             video.update({"bitrate" : "null"})
         try:
-            video.update({"size" : str(dat.getbest().get_filesize)})
+            video.update({"size" : str(int(dat.getbest().get_filesize()/1024))+" bytes"})
         except:
             video.update({"size" : "null"})
         try:
