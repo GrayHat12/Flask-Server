@@ -62,7 +62,7 @@ class Article:
         return art[:art.find(endnt)]
 
     def getUrl(self):
-        url = "\"https://news.google.com"
+        url = "https://news.google.com"
         identifier = "./articles/"
         si = -1
         ei = -1
@@ -74,7 +74,7 @@ class Article:
                 ei = i
                 break
             i += 1
-        return url+self.article[si+2:ei]+"\""
+        return url+self.article[si+2:ei]
 
     def getPublishedAt(self):
         snip=self.article[self.article.find('datetime=\"'):]
