@@ -56,6 +56,10 @@ class Decoder:
         except:
             data.update({"description" : "null"})
         try :
+            data.update({"thumb" : dat.thumb})
+        except:
+            data.update({"thumb" : "https://cdn.shopify.com/s/files/1/2018/8867/files/play-button.png"})
+        try :
             data.update({"likes" : dat.likes})
         except:
             data.update({"likes" : "null"})
