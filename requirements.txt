@@ -1,4 +1,4 @@
-flask
-requests
 pafy
 youtube-dl
+flask
+requests
