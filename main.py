@@ -1,9 +1,18 @@
 from flask import Flask , request
 import Article
+import requests
 import GrayAPI
 import os
 import html
+import time
+import threading
 from youtube import YouTube , Decoder
+
+def repeat():
+    while True:
+        time.sleep(1800)
+        print(requests.get('https://gray-server.herokuapp.com/').text)
+        
 
 app = Flask(__name__) 
 @app.route('/') 
@@ -66,4 +75,6 @@ def youtube():
 
 if __name__ == '__main__': 
     port = int(os.environ.get('PORT', 5000))
+    t1 = threading.Thread(target=repeat)
+    t1.start()
     app.run(host='0.0.0.0', port=port)
