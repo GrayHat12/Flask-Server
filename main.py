@@ -53,8 +53,12 @@ def news():
 def youtube():
     req_data = request.get_json()
     search = req_data['search']
+    continued = int(req_data['more'])
+    prevList=[]
+    if continued==1:
+        prevList = list(req_data['prev'])
     yt = YouTube()
-    yt.main(search)
+    yt.NewMain(search,prevList)
     yturl = list(yt.getLinks())
     try :
         maax = int(req_data['items'])

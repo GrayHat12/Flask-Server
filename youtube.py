@@ -7,11 +7,32 @@ class YouTube:
     def __init__(self):
         self.link = 'https://www.youtube.com/results?search_query='
         self.data = ''
+        self.prev=[]
         self.outlnk = 'https://www.youtube.com/'
+        self.idn0 = 'https://i.ytimg.com/vi/'
         self.lnks = set()
         self.idn = 'watch?v='
     
-    def main(self, query):
+    def NewMain(self, query,prevList=[]):
+        self.prev=prevList
+        requests.utils.default_headers().update(
+            {
+                'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11'
+            }
+        )
+        r = requests.get(self.link+urllib.parse.quote(query))
+        self.data = r.text
+        try:
+            while(self.data.index(self.idn0)):
+                self.data = self.data[self.data.index(self.idn0)+len(self.idn0):]
+                outLnk = 'https://www.youtube.com/watch?v='+self.data[:11]
+                if outLnk not in self.prev:
+                    self.lnks.add(outLnk)
+        except ValueError as ve:
+            return True
+    
+    def main(self, query,prevList=[]):
+        self.prev=prevList
         requests.utils.default_headers().update(
             {
                 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11'
@@ -23,7 +44,8 @@ class YouTube:
             while(self.data.index(self.idn)):
                 self.data = self.data[self.data.index(self.idn):]
                 tmp = self.data[0:11+len(self.idn)]
-                self.lnks.add(self.outlnk+tmp)
+                if (self.outlnk+tmp) not in self.prev:
+                    self.lnks.add(self.outlnk+tmp)
                 self.data = self.data[12:]
                 #print(self.lnks)
         except ValueError as ve:
