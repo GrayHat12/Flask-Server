@@ -10,7 +10,7 @@ from youtube import YouTube , Decoder
 
 def repeat():
     while True:
-        time.sleep(1800)
+        time.sleep(180)
         print(requests.get('https://gray-server.herokuapp.com/').text)
         
 
