@@ -14,6 +14,9 @@ class GrayNews:
         self.madeReq = False
         self.reqerr = None
         self.lnk = "https://news.google.com/search?q="
+        self.lnk = "https://news.google.com/search?q="+urlib.parse.quote(str(self.search).encode('utf-8'))
+        if search == 'GB#HOME':
+            self.lnk = self.HOME
         #if search == GrayNews.HOME:
             #self.lnk = GrayNews.HOME
         #elif search == GrayNews.WORLD:
@@ -24,7 +27,6 @@ class GrayNews:
             #self.lnk = GrayNews.SCIENCE
         #else:
         #print(search)
-        self.lnk = "https://news.google.com/search?q="+urlib.parse.quote(str(self.search).encode('utf-8'))
 
     def getSource(self):
         if self.madeReq:
