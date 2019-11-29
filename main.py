@@ -78,6 +78,8 @@ def youtube():
 @app.after_request
 def apply_caching(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET,POST"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With,Access-Control-Allow-Origin"
     return response
 
 if __name__ == '__main__': 
