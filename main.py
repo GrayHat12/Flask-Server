@@ -75,7 +75,10 @@ def youtube():
     data.update({"items" : req_data['items']})
     return data
     
-    
+@app.after_request
+def apply_caching(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
 
 if __name__ == '__main__': 
     port = int(os.environ.get('PORT', 5000))
