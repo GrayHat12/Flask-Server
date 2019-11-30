@@ -1,4 +1,4 @@
 pafy
-youtube-dl
+youtube-dl==2019.11.28
 flask
 requests
