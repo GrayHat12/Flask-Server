@@ -51,29 +51,32 @@ def news():
 
 @app.route('/youtube',methods=['POST'])
 def youtube():
-    req_data = request.get_json()
-    search = req_data['search']
-    continued = int(req_data['more'])
-    prevList=[]
-    if continued==1:
-        prevList = list(req_data['prev'])
-    yt = YouTube()
-    yt.NewMain(search,prevList)
-    yturl = list(yt.getLinks())
-    try :
-        maax = int(req_data['items'])
-        if maax > 0 and maax < len(yturl):
-            yturl=yturl[:maax]
-    except :
-        return {"error" : "Invalid json data. items field compulsory"}
-    lst = {}
-    for url in yturl:
-        dcdr = Decoder(url)
-        lst.update({url : dcdr.getDat()})
-    data= {"data" : lst}
-    data.update({"search" : search})
-    data.update({"items" : req_data['items']})
-    return data
+    try:
+        req_data = request.get_json()
+        search = req_data['search']
+        continued = int(req_data['more'])
+        prevList=[]
+        if continued==1:
+            prevList = list(req_data['prev'])
+        yt = YouTube()
+        yt.NewMain(search,prevList)
+        yturl = list(yt.getLinks())
+        try :
+            maax = int(req_data['items'])
+            if maax > 0 and maax < len(yturl):
+                yturl=yturl[:maax]
+        except :
+            return {"error" : "Invalid json data. items field compulsory"}
+        lst = {}
+        for url in yturl:
+            dcdr = Decoder(url)
+            lst.update({url : dcdr.getDat()})
+        data= {"data" : lst}
+        data.update({"search" : search})
+        data.update({"items" : req_data['items']})
+        return data
+    except Exception as ex:
+        return({"error":ex})
     
 @app.after_request
 def apply_caching(response):
