@@ -73,11 +73,23 @@ def youtube():
             lst.update({url : dcdr.getDat()})
         data= {"data" : lst}
         data.update({"search" : search})
-        data.update({"items" : req_data['items']})
+        data.update({"items" : len(lst)})
         return data
     except Exception as ex:
         return({"error":ex})
     
+@app.route('/video',methods=['POST'])
+def video():
+    lst={}
+    req_data = request.get_json()
+    vidid = req_data['videoId']
+    dcdr = Decoder(vidid)
+    lst.update({"https://www.youtube.com/watch?v="+vidid:dcdr.getDat()})
+    data = {"data":lst}
+    data.update({"search":None})
+    data.update({"items":1})
+    return data
+
 @app.after_request
 def apply_caching(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
