@@ -1,4 +1,4 @@
-pafy
+pafy==0.5.5
 youtube-dl==2019.11.28
 flask
 requests
