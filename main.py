@@ -6,7 +6,7 @@ import os
 import html
 import time
 import threading
-from youtube import YouTube , Decoder
+from youtube import YouTube , Decoder, Search, SearchMore,GetSong
 
 def repeat():
     while True:
@@ -89,6 +89,49 @@ def video():
     data.update({"search":None})
     data.update({"items":1})
     return data
+
+@app.route('/searchyt',methods=['POST'])
+def search():
+    lst={}
+    req_data = request.get_json()
+    term = req_data['search']
+    obj = Search(term)
+    try:
+        obj.compute()
+    except Exception as ex:
+        return {"error" : ex}
+    try:
+        v2 = obj.prepare()
+        return v2
+    except Exception as ex:
+        return {"error2" : ex}
+
+@app.route('/msearchyt',methods=['POST'])
+def searchMore():
+    lst={}
+    req_data = request.get_json()
+    session = req_data['sessionToken']
+    token = req_data['continuation']
+    clickparam = req_data['clickTrackingParams']
+    term = req_data['search']
+    obj = SearchMore(session,token,clickparam,term)
+    try:
+        obj.compute()
+    except Exception as ex:
+        return {"error" : ex}
+    try:
+        v2 = obj.prepare()
+        return v2
+    except Exception as ex:
+        return {"error2" : ex}
+
+@app.route('/getSong/<id>',methods=['GET'])
+def getSong(id=''):
+    if len(id) != 11:
+        return {"Error" : "Bad Video Id"}
+    ob = GetSong(id)
+    return ob.getSong()
+    
 
 @app.after_request
 def apply_caching(response):
