@@ -107,43 +107,84 @@ class Search:
         for key in self.vidData.keys():
             if key == 'videoRenderer':
                 for item in self.vidData.get(key):
-                    videoId = item['videoId']
-                    thumbs = item['thumbnail']['thumbnails']
-                    thumb = thumbs[len(thumbs)-1]
-                    titles = item['title']['runs']
-                    title = ''
-                    for tit in titles:
-                        if len(title)==0:
-                            title+=tit['text']
-                        else:
-                            title+=" "+tit['text']
-                    access = item['title']['accessibility']['accessibilityData']['label']
-                    descriptions = item['descriptionSnippet']['runs']
-                    desc = ''
-                    channel = item['longBylineText']['runs'][0]['text']
-                    for des in descriptions:
-                        if len(desc)==0:
-                            desc+=des['text']
-                        else:
-                            desc+=" "+des['text']
-                    published = item['publishedTimeText']['simpleText']
-                    length = item['lengthText']['accessibility']['accessibilityData']['label']
-                    simplelength = item['lengthText']['simpleText']
-                    views = item['viewCountText']['simpleText']
-                    viewsShort = item['shortViewCountText']['simpleText']
-                    fnalOut.update({videoId : {
-                        'videoId' : videoId,
-                        'thumb' : thumb,
-                        'title' : title,
-                        'access' : access,
-                        'author' : channel,
-                        'desc' : desc,
-                        'published' : published,
-                        'length' : length,
-                        'lengthShort' : simplelength,
-                        'views' : views,
-                        'viewShort' : viewsShort
-                    }})
+                    try:
+                        thumb = ''
+                        title = ''
+                        access = ''
+                        desc = ''
+                        channel = ''
+                        published = ''
+                        length = ''
+                        simplelength = ''
+                        views = ''
+                        viewsShort = ''
+                        videoId = item['videoId']
+                        try:
+                            thumbs = item['thumbnail']['thumbnails']
+                            thumb = thumbs[len(thumbs)-1]
+                        except:
+                            pass
+                        try:
+                            titles = item['title']['runs']
+                            for tit in titles:
+                                if len(title)==0:
+                                    title+=tit['text']
+                                else:
+                                    title+=" "+tit['text']
+                        except :
+                            pass
+                        try:
+                            access = item['title']['accessibility']['accessibilityData']['label']
+                        except:
+                            pass
+                        try:
+                            channel = item['longBylineText']['runs'][0]['text']
+                        except :
+                            pass
+                        try:
+                            descriptions = item['descriptionSnippet']['runs']
+                            for des in descriptions:
+                                if len(desc)==0:
+                                    desc+=des['text']
+                                else:
+                                    desc+=" "+des['text']
+                        except:
+                            pass
+                        try:
+                            published = item['publishedTimeText']['simpleText']
+                        except:
+                            pass
+                        try:
+                            length = item['lengthText']['accessibility']['accessibilityData']['label']
+                        except:
+                            pass
+                        try:
+                            simplelength = item['lengthText']['simpleText']
+                        except:
+                            pass
+                        try:
+                            views = item['viewCountText']['simpleText']
+                        except:
+                            pass
+                        try:
+                            viewsShort = item['shortViewCountText']['simpleText']
+                        except:
+                            pass
+                        fnalOut.update({videoId : {
+                            'videoId' : videoId,
+                            'thumb' : thumb,
+                            'title' : title,
+                            'access' : access,
+                            'author' : channel,
+                            'desc' : desc,
+                            'published' : published,
+                            'length' : length,
+                            'lengthShort' : simplelength,
+                            'views' : views,
+                            'viewShort' : viewsShort
+                        }})
+                    except:
+                        pass
         return fnalOut
         
 class SearchMore:
@@ -193,48 +234,91 @@ class SearchMore:
         for key in self.vidData.keys():
             if key == 'videoRenderer':
                 for item in self.vidData.get(key):
-                    videoId = item['videoId']
-                    thumbs = item['thumbnail']['thumbnails']
-                    thumb = thumbs[len(thumbs)-1]
-                    titles = item['title']['runs']
-                    title = ''
-                    for tit in titles:
-                        if len(title)==0:
-                            title+=tit['text']
-                        else:
-                            title+=" "+tit['text']
-                    access = item['title']['accessibility']['accessibilityData']['label']
-                    descriptions = item['descriptionSnippet']['runs']
-                    channel = item['longBylineText']['runs'][0]['text']
-                    desc = ''
-                    for des in descriptions:
-                        if len(desc)==0:
-                            desc+=des['text']
-                        else:
-                            desc+=" "+des['text']
-                    published = item['publishedTimeText']['simpleText']
-                    length = item['lengthText']['accessibility']['accessibilityData']['label']
-                    simplelength = item['lengthText']['simpleText']
-                    views = item['viewCountText']['simpleText']
-                    viewsShort = item['shortViewCountText']['simpleText']
                     try:
-                        datttt = {
-                        'videoId' : videoId,
-                        'thumb' : thumb,
-                        'title' : title,
-                        'access' : access,
-                        'author' : channel,
-                        'desc' : desc,
-                        'published' : published,
-                        'length' : length,
-                        'lengthShort' : simplelength,
-                        'views' : views,
-                        'viewShort' : viewsShort
-                        }
-                        fnalOut.update({videoId : datttt})
-                        print(datttt)
-                    except :
-                        print("err 237 ytSM")
+                        thumb = ''
+                        title = ''
+                        access = ''
+                        desc = ''
+                        channel = ''
+                        published = ''
+                        length = ''
+                        simplelength = ''
+                        views = ''
+                        viewsShort = ''
+                        videoId = item['videoId']
+                        try:
+                            thumbs = item['thumbnail']['thumbnails']
+                            thumb = thumbs[len(thumbs)-1]
+                        except :
+                            pass
+                        try:
+                            titles = item['title']['runs']
+                        except :
+                            pass
+                        try:
+                            for tit in titles:
+                                if len(title)==0:
+                                    title+=tit['text']
+                                else:
+                                    title+=" "+tit['text']
+                        except :
+                            pass
+                        try:
+                            access = item['title']['accessibility']['accessibilityData']['label']
+                        except :
+                            pass
+                        try:
+                            channel = item['longBylineText']['runs'][0]['text']
+                        except:
+                            pass
+                        try:
+                            descriptions = item['descriptionSnippet']['runs']
+                            for des in descriptions:
+                                if len(desc)==0:
+                                    desc+=des['text']
+                                else:
+                                    desc+=" "+des['text']
+                        except:
+                            pass
+                        try:
+                            published = item['publishedTimeText']['simpleText']
+                        except:
+                            pass
+                        try:
+                            length = item['lengthText']['accessibility']['accessibilityData']['label']
+                        except :
+                            pass
+                        try:
+                            simplelength = item['lengthText']['simpleText']
+                        except:
+                            pass
+                        try:
+                            views = item['viewCountText']['simpleText']
+                        except:
+                            pass
+                        try:
+                            viewsShort = item['shortViewCountText']['simpleText']
+                        except:
+                            pass
+                        try:
+                            datttt = {
+                            'videoId' : videoId,
+                            'thumb' : thumb,
+                            'title' : title,
+                            'access' : access,
+                            'author' : channel,
+                            'desc' : desc,
+                            'published' : published,
+                            'length' : length,
+                            'lengthShort' : simplelength,
+                            'views' : views,
+                            'viewShort' : viewsShort
+                            }
+                            fnalOut.update({videoId : datttt})
+                        except :
+                            print("err 237 ytSM")
+                    except:
+                        pass
         return fnalOut
     
 class GetSong:
