@@ -87,12 +87,10 @@ class Search:
         for items in dat:
             for k,v in items.items():
                 if k in self.vidData.keys():
-                    #print("in Keys",k,self.vidData.keys(),type(self.vidData.get(k)))
                     put=self.vidData.get(k)
                     put.append(v)
                     self.vidData.update({k : put})
                 else:
-                    #print("not in keys",k,self.vidData.keys(),type(self.vidData.get(k)))
                     put = []
                     put.append(v)
                     self.vidData.update({k : put})
@@ -106,9 +104,6 @@ class Search:
         fnalOut.update({'clickTrackingParams' : continuations['clickTrackingParams']})
         sessionToken = self.data['data'][1]['xsrf_token']
         fnalOut.update({"sessionToken" : sessionToken})
-        """
-        https://www.youtube.com/results?search_query=lauv+songs&pbj=1&ctoken=Eu0DEgpsYXV2IHNvbmdzGsADU0JTQ0FSaFZRMlpNWkVsRlVITXhkRmxxTkdsbFJXUktibmxPZVhlQ0FTSlFURXR0YmtOMFNtNTRZVGxPTFd0c05WcHdYMHQ1VFdZd1QyeHpYMEpvTkhsbWdnRUxYMk50VDFKYVRXZDJOa21DQVF0Q1kzRjRURU5YYmkxRFJZSUJDM0JRUVVGR1RYUkVWWHB2Z2dFTGFqbEVibFZKU1RJNFprbUNBUXRtZG1wd1JWOTNSa3cxUVlJQkMyRTNabnByY1V4dmVuZEJnZ0VMUmxKVlgwMXpSelYwV1ZHQ0FRc3RUVm80WjNWVWVHTkdWWUlCQzJ0UFEydHVaUzFDYTNVMGdnRWFVa1JGVFcxT1dqRTBXbHBLVjBOMVZsaEZPWEJoUVZoWVZsR0NBUXRMYkhOcE9FTmlVMjA0V1lJQkMyTmZNVEJ4VXpkaGJXcHJnZ0VMVlhWRGNUaHRkRXM0U2pTQ0FRdGpVV2hXTFZCbVRXOW9OSUlCQzJoMlVtbFpUa1Y1WkhKdmdnRUxNbXMxZHpabFZIaEhXR3VDQVF0a1puSnRRa2g1WmtSalRZSUJDMjFCZUUxT2NIQm1WWEEwNmdNQcoBGxoXaHR0cHM6Ly93d3cueW91dHViZS5jb20iABi83ugY&continuation=Eu0DEgpsYXV2IHNvbmdzGsADU0JTQ0FSaFZRMlpNWkVsRlVITXhkRmxxTkdsbFJXUktibmxPZVhlQ0FTSlFURXR0YmtOMFNtNTRZVGxPTFd0c05WcHdYMHQ1VFdZd1QyeHpYMEpvTkhsbWdnRUxYMk50VDFKYVRXZDJOa21DQVF0Q1kzRjRURU5YYmkxRFJZSUJDM0JRUVVGR1RYUkVWWHB2Z2dFTGFqbEVibFZKU1RJNFprbUNBUXRtZG1wd1JWOTNSa3cxUVlJQkMyRTNabnByY1V4dmVuZEJnZ0VMUmxKVlgwMXpSelYwV1ZHQ0FRc3RUVm80WjNWVWVHTkdWWUlCQzJ0UFEydHVaUzFDYTNVMGdnRWFVa1JGVFcxT1dqRTBXbHBLVjBOMVZsaEZPWEJoUVZoWVZsR0NBUXRMYkhOcE9FTmlVMjA0V1lJQkMyTmZNVEJ4VXpkaGJXcHJnZ0VMVlhWRGNUaHRkRXM0U2pTQ0FRdGpVV2hXTFZCbVRXOW9OSUlCQzJoMlVtbFpUa1Y1WkhKdmdnRUxNbXMxZHpabFZIaEhXR3VDQVF0a1puSnRRa2g1WmtSalRZSUJDMjFCZUUxT2NIQm1WWEEwNmdNQcoBGxoXaHR0cHM6Ly93d3cueW91dHViZS5jb20iABi83ugY&itct=CF0QybcCIhMIxJfz6IbB5wIVD_RoCh0F0Adw
-        """
         for key in self.vidData.keys():
             if key == 'videoRenderer':
                 for item in self.vidData.get(key):
@@ -125,6 +120,7 @@ class Search:
                     access = item['title']['accessibility']['accessibilityData']['label']
                     descriptions = item['descriptionSnippet']['runs']
                     desc = ''
+                    channel = item['longBylineText']['runs'][0]['text']
                     for des in descriptions:
                         if len(desc)==0:
                             desc+=des['text']
@@ -140,6 +136,7 @@ class Search:
                         'thumb' : thumb,
                         'title' : title,
                         'access' : access,
+                        'author' : channel,
                         'desc' : desc,
                         'published' : published,
                         'length' : length,
@@ -177,12 +174,10 @@ class SearchMore:
         for items in dat:
             for k,v in items.items():
                 if k in self.vidData.keys():
-                    #print("in Keys",k,self.vidData.keys(),type(self.vidData.get(k)))
                     put=self.vidData.get(k)
                     put.append(v)
                     self.vidData.update({k : put})
                 else:
-                    #print("not in keys",k,self.vidData.keys(),type(self.vidData.get(k)))
                     put = []
                     put.append(v)
                     self.vidData.update({k : put})
@@ -195,9 +190,6 @@ class SearchMore:
         fnalOut.update({'clickTrackingParams' : continuations['clickTrackingParams']})
         sessionToken = self.data['data'][1]['xsrf_token']
         fnalOut.update({"sessionToken" : sessionToken})
-        """
-        https://www.youtube.com/results?search_query=lauv+songs&pbj=1&ctoken=Eu0DEgpsYXV2IHNvbmdzGsADU0JTQ0FSaFZRMlpNWkVsRlVITXhkRmxxTkdsbFJXUktibmxPZVhlQ0FTSlFURXR0YmtOMFNtNTRZVGxPTFd0c05WcHdYMHQ1VFdZd1QyeHpYMEpvTkhsbWdnRUxYMk50VDFKYVRXZDJOa21DQVF0Q1kzRjRURU5YYmkxRFJZSUJDM0JRUVVGR1RYUkVWWHB2Z2dFTGFqbEVibFZKU1RJNFprbUNBUXRtZG1wd1JWOTNSa3cxUVlJQkMyRTNabnByY1V4dmVuZEJnZ0VMUmxKVlgwMXpSelYwV1ZHQ0FRc3RUVm80WjNWVWVHTkdWWUlCQzJ0UFEydHVaUzFDYTNVMGdnRWFVa1JGVFcxT1dqRTBXbHBLVjBOMVZsaEZPWEJoUVZoWVZsR0NBUXRMYkhOcE9FTmlVMjA0V1lJQkMyTmZNVEJ4VXpkaGJXcHJnZ0VMVlhWRGNUaHRkRXM0U2pTQ0FRdGpVV2hXTFZCbVRXOW9OSUlCQzJoMlVtbFpUa1Y1WkhKdmdnRUxNbXMxZHpabFZIaEhXR3VDQVF0a1puSnRRa2g1WmtSalRZSUJDMjFCZUUxT2NIQm1WWEEwNmdNQcoBGxoXaHR0cHM6Ly93d3cueW91dHViZS5jb20iABi83ugY&continuation=Eu0DEgpsYXV2IHNvbmdzGsADU0JTQ0FSaFZRMlpNWkVsRlVITXhkRmxxTkdsbFJXUktibmxPZVhlQ0FTSlFURXR0YmtOMFNtNTRZVGxPTFd0c05WcHdYMHQ1VFdZd1QyeHpYMEpvTkhsbWdnRUxYMk50VDFKYVRXZDJOa21DQVF0Q1kzRjRURU5YYmkxRFJZSUJDM0JRUVVGR1RYUkVWWHB2Z2dFTGFqbEVibFZKU1RJNFprbUNBUXRtZG1wd1JWOTNSa3cxUVlJQkMyRTNabnByY1V4dmVuZEJnZ0VMUmxKVlgwMXpSelYwV1ZHQ0FRc3RUVm80WjNWVWVHTkdWWUlCQzJ0UFEydHVaUzFDYTNVMGdnRWFVa1JGVFcxT1dqRTBXbHBLVjBOMVZsaEZPWEJoUVZoWVZsR0NBUXRMYkhOcE9FTmlVMjA0V1lJQkMyTmZNVEJ4VXpkaGJXcHJnZ0VMVlhWRGNUaHRkRXM0U2pTQ0FRdGpVV2hXTFZCbVRXOW9OSUlCQzJoMlVtbFpUa1Y1WkhKdmdnRUxNbXMxZHpabFZIaEhXR3VDQVF0a1puSnRRa2g1WmtSalRZSUJDMjFCZUUxT2NIQm1WWEEwNmdNQcoBGxoXaHR0cHM6Ly93d3cueW91dHViZS5jb20iABi83ugY&itct=CF0QybcCIhMIxJfz6IbB5wIVD_RoCh0F0Adw
-        """
         for key in self.vidData.keys():
             if key == 'videoRenderer':
                 for item in self.vidData.get(key):
@@ -213,6 +205,7 @@ class SearchMore:
                             title+=" "+tit['text']
                     access = item['title']['accessibility']['accessibilityData']['label']
                     descriptions = item['descriptionSnippet']['runs']
+                    channel = item['longBylineText']['runs'][0]['text']
                     desc = ''
                     for des in descriptions:
                         if len(desc)==0:
@@ -229,6 +222,7 @@ class SearchMore:
                         'thumb' : thumb,
                         'title' : title,
                         'access' : access,
+                        'author' : channel
                         'desc' : desc,
                         'published' : published,
                         'length' : length,
