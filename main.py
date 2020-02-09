@@ -110,6 +110,7 @@ def search():
 def searchMore():
     lst={}
     req_data = request.get_json()
+    print('Here : ',req_data)
     session = req_data['sessionToken']
     token = req_data['continuation']
     clickparam = req_data['clickTrackingParams']
@@ -118,12 +119,14 @@ def searchMore():
     try:
         obj.compute()
     except Exception as ex:
-        return {"error" : ex}
+        print("error 122")
+        return {"error 122" : ex}
     try:
         v2 = obj.prepare()
         return v2
     except Exception as ex:
-        return {"error2" : ex}
+        print("error 127")
+        return {"error2 127" : ex}
 
 @app.route('/getSong/<id>',methods=['GET'])
 def getSong(id=''):
