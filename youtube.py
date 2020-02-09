@@ -222,7 +222,7 @@ class SearchMore:
                         'thumb' : thumb,
                         'title' : title,
                         'access' : access,
-                        'author' : channel
+                        'author' : channel,
                         'desc' : desc,
                         'published' : published,
                         'length' : length,
