@@ -217,7 +217,8 @@ class SearchMore:
                     simplelength = item['lengthText']['simpleText']
                     views = item['viewCountText']['simpleText']
                     viewsShort = item['shortViewCountText']['simpleText']
-                    fnalOut.update({videoId : {
+                    try:
+                        datttt = {
                         'videoId' : videoId,
                         'thumb' : thumb,
                         'title' : title,
@@ -229,7 +230,11 @@ class SearchMore:
                         'lengthShort' : simplelength,
                         'views' : views,
                         'viewShort' : viewsShort
-                    }})
+                        }
+                        fnalOut.update({videoId : datttt})
+                        print(datttt)
+                    except :
+                        print("err 237 ytSM")
         return fnalOut
     
 class GetSong:
