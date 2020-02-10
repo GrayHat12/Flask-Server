@@ -145,6 +145,6 @@ def apply_caching(response):
 
 if __name__ == '__main__': 
     port = int(os.environ.get('PORT', 5000))
-    t1 = threading.Thread(target=repeat)
-    t1.start()
+    #t1 = threading.Thread(target=repeat)
+    #t1.start()
     app.run(host='0.0.0.0', port=port)
