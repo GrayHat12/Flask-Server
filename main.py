@@ -13,7 +13,6 @@ def repeat():
         time.sleep(180)
         print(requests.get('https://gray-server.herokuapp.com/').text)
         
-
 app = Flask(__name__) 
 @app.route('/') 
 def hello_world(): 
@@ -148,3 +147,4 @@ if __name__ == '__main__':
     #t1 = threading.Thread(target=repeat)
     #t1.start()
     app.run(host='0.0.0.0', port=port)
+    #app.run()

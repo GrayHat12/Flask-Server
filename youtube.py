@@ -98,6 +98,7 @@ class Search:
     
     def prepare(self):
         fnalOut = dict()
+        fnalOut.update({'data' : []})
         continuations = self.data['data'][1]['response']['contents']['twoColumnSearchResultsRenderer']['primaryContents']['sectionListRenderer']['contents'][0]
         continuations = continuations['itemSectionRenderer']['continuations'][0]['nextContinuationData']
         fnalOut.update({'continuation' : continuations['continuation']})
@@ -170,7 +171,9 @@ class Search:
                             viewsShort = item['shortViewCountText']['simpleText']
                         except:
                             pass
-                        fnalOut.update({videoId : {
+                        data = fnalOut.get('data')
+                        item = dict()
+                        item.update({
                             'videoId' : videoId,
                             'thumb' : thumb,
                             'title' : title,
@@ -182,7 +185,22 @@ class Search:
                             'lengthShort' : simplelength,
                             'views' : views,
                             'viewShort' : viewsShort
-                        }})
+                        })
+                        data.append(item)
+                        fnalOut.update({'data' : data})
+                        """fnalOut.update({videoId : {
+                            'videoId' : videoId,
+                            'thumb' : thumb,
+                            'title' : title,
+                            'access' : access,
+                            'author' : channel,
+                            'desc' : desc,
+                            'published' : published,
+                            'length' : length,
+                            'lengthShort' : simplelength,
+                            'views' : views,
+                            'viewShort' : viewsShort
+                        }})"""
                     except:
                         pass
         return fnalOut
@@ -225,6 +243,7 @@ class SearchMore:
     
     def prepare(self):
         fnalOut = dict()
+        fnalOut.update({'data' : []})
         continuations = self.data['data'][1]['response']['continuationContents']['itemSectionContinuation']['continuations'][0]
         continuations = continuations['nextContinuationData']
         fnalOut.update({'continuation' : continuations['continuation']})
@@ -301,20 +320,23 @@ class SearchMore:
                         except:
                             pass
                         try:
-                            datttt = {
-                            'videoId' : videoId,
-                            'thumb' : thumb,
-                            'title' : title,
-                            'access' : access,
-                            'author' : channel,
-                            'desc' : desc,
-                            'published' : published,
-                            'length' : length,
-                            'lengthShort' : simplelength,
-                            'views' : views,
-                            'viewShort' : viewsShort
+                            data = fnalOut.get('data')
+                            item = {
+                                'videoId' : videoId,
+                                'thumb' : thumb,
+                                'title' : title,
+                                'access' : access,
+                                'author' : channel,
+                                'desc' : desc,
+                                'published' : published,
+                                'length' : length,
+                                'lengthShort' : simplelength,
+                                'views' : views,
+                                'viewShort' : viewsShort
                             }
-                            fnalOut.update({videoId : datttt})
+                            data.append(item)
+                            fnalOut.update({'data' : data})
+                            #fnalOut.update({videoId : datttt})
                         except :
                             print("err 237 ytSM")
                     except:
@@ -322,8 +344,8 @@ class SearchMore:
         return fnalOut
     
 class GetSong:
-    def __init__(self,id=''):
-        self.dat = pafy.new(id,basic=False).getbestaudio().url
+    def __init__(self,idd):
+        self.dat = pafy.new(idd,basic=False).getbestaudio().url
     
     def getSong(self):
         return self.dat
